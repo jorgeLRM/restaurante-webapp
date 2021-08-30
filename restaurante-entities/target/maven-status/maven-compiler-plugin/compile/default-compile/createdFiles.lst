@@ -1,0 +1,4 @@
+com\jorge\restauranteentities\entity\Menu.class
+com\jorge\restauranteentities\entity\TipoRestaurante.class
+com\jorge\restauranteentities\entity\CommonEntity.class
+com\jorge\restauranteentities\entity\Restaurante.class
