@@ -12,6 +12,16 @@ import com.jorge.restaurantesdata.myexceptions.RestauranteException;
 
 public class EmpleadoDAOImpl implements EmpleadoDAO {
 
+	static {
+		try {
+			ConnectionFactory.conectar();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public int guardar(Empleado empleado) throws SQLException {
 		// TODO Auto-generated method stub
@@ -48,13 +58,13 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		
 		if (esSuperAdminGeneral) {
 			sql = "SELECT e.*, r.nombre AS nombreRol "
-					+ "FROM empleado e, rol "
+					+ "FROM empleado e, rol r "
 					+ "WHERE e.idRol = r.idRol "
 					+ "AND (e.usuario = '"+usuario+"' OR e.email = '"+usuario+"') "
 							+ "AND e.password = '"+password+"' "
 									+ "AND e.idSucursal IS NULL;";
 		} else {
-			// Reemplazar por código para ususario administrador sucursal y empleado
+			// Reemplazar por código para usuario administrador sucursal y empleado
 		}
 		
 		ResultSet rs = ConnectionFactory.ejecutarSQLSelect(sql);

@@ -1,7 +1,12 @@
 package com.jorge.restauranteweb.controllers;
 
+import java.sql.SQLException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
+import com.jorge.restauranteentities.entity.Empleado;
+import com.jorge.restauranteservice.services.LoginService;
 
 /**
  * 
@@ -15,9 +20,26 @@ public class LoginController {
 	
 	private String username;
 	private String password;
+	private boolean esSuperAdminGeneral;
+	
+	private LoginService loginService = new LoginService();
 	
 	public void entrar() {
+		try {
+			Empleado empleadoConsultado = this.loginService.consultarPorUsuarioYPassword(this.username, this.password, this.esSuperAdminGeneral);
 		
+			if (empleadoConsultado != null) {
+				if (empleadoConsultado.isEstatus() == 1) {
+					if (empleadoConsultado.isSuperadmingeneral()) {
+						System.out.println("SI, ES SUPERADMINGENERAL! :D");
+					}
+				}
+			} else {
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String getUsername() {
@@ -31,5 +53,13 @@ public class LoginController {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isEsSuperAdminGeneral() {
+		return esSuperAdminGeneral;
+	}
+
+	public void setEsSuperAdminGeneral(boolean esSuperAdminGeneral) {
+		this.esSuperAdminGeneral = esSuperAdminGeneral;
 	}
 }
