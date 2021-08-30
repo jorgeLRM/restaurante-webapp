@@ -1,5 +1,6 @@
 package com.jorge.restauranteweb.controllers;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.faces.bean.ManagedBean;
@@ -7,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.jorge.restauranteentities.entity.Empleado;
 import com.jorge.restauranteservice.services.LoginService;
+import com.jorge.restauranteweb.utils.ControllersUtil;
 
 /**
  * 
@@ -31,13 +33,15 @@ public class LoginController {
 			if (empleadoConsultado != null) {
 				if (empleadoConsultado.isEstatus() == 1) {
 					if (empleadoConsultado.isSuperadmingeneral()) {
-						System.out.println("SI, ES SUPERADMINGENERAL! :D");
+						ControllersUtil.redireccionar("/adminrestaurantes.xhtml");
 					}
 				}
 			} else {
 				
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
