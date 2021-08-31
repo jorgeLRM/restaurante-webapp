@@ -3,6 +3,7 @@ package com.jorge.restauranteweb.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -35,13 +36,17 @@ public class LoginController {
 					if (empleadoConsultado.isSuperadmingeneral()) {
 						ControllersUtil.redireccionar("/adminrestaurantes.xhtml");
 					}
+				} else {
+					ControllersUtil.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "ERROR", "El usuario está deshabilitado del sistema.");
 				}
 			} else {
-				
+				ControllersUtil.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "ERROR", "El usuario y/o contraseña son incorrectos.");
 			}
 		} catch (SQLException e) {
+			ControllersUtil.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "ERROR", "Hubo un problema al procesar tu solicitud, favor de intentarlo más tarde.");
 			e.printStackTrace();
 		} catch (IOException e) {
+			ControllersUtil.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "ERROR", "Hubo un problema al acceder a tu pantalla de inicio, favor de intentarlo más tarde.");
 			e.printStackTrace();
 		}
 	}

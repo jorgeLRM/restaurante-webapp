@@ -12,7 +12,7 @@
 	<h:body>
 		<h:form id="formLogin">
 			
-			<b:growl id="msgValidaciones"></b:growl>
+			<b:growl id="msgValidaciones" placementFrom="top" showDetail="true" showSummary="true"></b:growl>
 			
 			<b:container id="containerLogin" layout="fluid">
 				<b:panel id="pnlLogin" title="Inicio de sersión" look="primary" collapsible="false">
@@ -39,11 +39,11 @@
 							</b:column>
 							
 							<b:column mediumScreen="10">
-								<b:inputText placeholder="Ingresa tu contraseña" id="txtPassword" value="#{loginController.password}" required="true" requiredMessage="La contraseña es requerida">
+								<b:inputSecret placeholder="Ingresa tu contraseña" id="txtPassword" value="#{loginController.password}" required="true" requiredMessage="La contraseña es requerida">
 									<f:facet name="prepend">
 										<b:icon name="lock"></b:icon>
 									</f:facet>
-								</b:inputText>
+								</b:inputSecret>
 							</b:column>	
 							
 							<b:column span="2"></b:column>
