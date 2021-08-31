@@ -12,6 +12,8 @@
 	<h:body>
 		<h:form id="formLogin">
 			
+			<b:growl id="msgValidaciones"></b:growl>
+			
 			<b:container id="containerLogin" layout="fluid">
 				<b:panel id="pnlLogin" title="Inicio de sersión" look="primary" collapsible="false">
 					<b:panelGrid columns="2" size="lg">
@@ -51,7 +53,7 @@
 							
 							<b:column span="2"></b:column>
 							<b:column span="10">
-								<b:commandButton value="Ingresar" onclick="ajax:loginController.entrar()" look="primary" style="width: 100%; float: right"></b:commandButton>
+								<b:commandButton value="Ingresar" onclick="ajax:loginController.entrar()" look="primary" style="width: 100%; float: right" update="pnlLogin, msgValidaciones"></b:commandButton>
 							</b:column>
 						</b:row>
 					</b:panelGrid>
